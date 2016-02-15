@@ -12,7 +12,7 @@ RUN apt-get update -y && \
 ADD config/nginx.conf /etc/nginx/nginx.conf.docker
 ADD config/laravel /etc/nginx/sites-available/laravel
 RUN ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/laravel
-
+RUN rm /etc/nginx/sites-enabled/default
 #Startup Script
 ADD config/nginx-start.sh /usr/bin/nginx-start.sh
 RUN chmod 777 /usr/bin/nginx-start.sh
@@ -24,5 +24,5 @@ VOLUME ["/data"]
 EXPOSE 80
 EXPOSE 443
 
-WORKDIR /usr/bin
-ENTRYPOINT ["/usr/bin/nginx-start.sh"]
+#WORKDIR /usr/bin
+#ENTRYPOINT ["/usr/bin/nginx-start.sh"]
